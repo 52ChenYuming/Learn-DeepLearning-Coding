@@ -22,7 +22,7 @@ class LeNet(nn.Module):
         # 数据通过view函数将图片格式转换为一维向量
         # x = x.view(-1, 32 * 5 * 5)  # output(32*5*5)
         # 使用 torch.flatten 函数来替代 view 方法进行展平操作。flatten 方法提供了一种更直观的方式来展平张量。
-        x = torch.flatten(x, start_dim=1)  # 从第二个维度开始展平
+        x = torch.flatten(x, start_dim=1)  # 从第二个维度开始展平，第一个维度是batch，保持batch不变
         x = F.relu(self.fc1(x))  # output(120)
         x = F.relu(self.fc2(x))  # output(82)
         x = self.fc3(x)  # output(10)
