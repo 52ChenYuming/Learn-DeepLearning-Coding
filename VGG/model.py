@@ -3,10 +3,10 @@ from torch import nn
 
 
 class VGG(nn.Module):
-    def __init__(self, features, class_num=1000, init_weights=False):
+    def __init__(self, features, num_classes=1000, init_weights=False):
         super(VGG, self).__init__()
         self.features = features
-        self.class_num = class_num
+        self.num_classes = num_classes
         self.classifier = nn.Sequential(
             nn.Dropout(p=0.5),
             nn.Linear(512 * 7 * 7, 4096),
@@ -14,7 +14,7 @@ class VGG(nn.Module):
             nn.Dropout(p=0.5),
             nn.Linear(4096, 4096),
             nn.ReLU(inplace=True),
-            nn.Linear(4096, class_num)
+            nn.Linear(4096, num_classes)
         )
         if init_weights:
             self._initialize_weights()
@@ -71,4 +71,4 @@ def vgg(model_name='vgg16', **kwargs):
     return model
 
 
-vgg_model = vgg(model_name='vgg16', class_num=1000, init_weights=True)
+vgg_model = vgg(model_name='vgg16', num_classes=1000, init_weights=True)

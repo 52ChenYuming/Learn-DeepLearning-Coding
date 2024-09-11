@@ -29,8 +29,9 @@ data_transforms = {
     ])
 }
 
-data_root = os.path.join(os.getcwd())
+data_root = os.path.abspath(os.path.join(os.getcwd(), '../'))
 image_path = data_root + "/data_set/flower_data/"
+print(image_path)
 
 # 加载数据集
 train_dataset = datasets.ImageFolder(root=image_path + "/train", transform=data_transforms['train'])
